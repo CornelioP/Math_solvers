@@ -115,7 +115,7 @@ class LM:
 
 
 class SGD:
-    def __init__(self, model, init_params, loss_fn, lr=0.01, max_iter=1000, batch_size=1, tol=1e-6, h=1e-8, verbose=True):
+    def __init__(self, model, init_params, loss_fn, lr=0.001, max_iter=1000, batch_size=20, tol=1e-6, h=1e-7, verbose=True):
         """
         Parameters:
             model: function
@@ -204,7 +204,7 @@ class SGD:
                 y_batch = y_shuffled[i:i + self.batch_size]
                 
                 #Compute predictions and loss for current batch 
-                preds = self.model(params,x)
+                preds = self.model(params,x_batch)
                 loss = self.loss_fn(preds,y_batch)
                 epoch_loss += loss
                 
