@@ -243,4 +243,157 @@ class SGD:
         
         return params, loss_history            
         
+
+class ADAM:
+    def __init__(self, model, init_params, loss_fn, lr=0.001, max_iter=1000, batch_size=20, tol=1e-6, h=1e-7, beta1=0.9, beta2=0.999, epsilon=1e-8, verbose=True):
+        """
+        Parameters:
+            model: function
+                Model function
+            init_params: float array
+                Array of inital param guess
+            loss_fn: function
+                Loss function
+            lr : float
+                Learning rate.
+            max_iter : int
+                Maximum number of iterations (epochs).
+            batch_size : int
+                Number of samples per mini-batch. If set to 1, it's pure SGD.
+            tol : float
+                Tolerance for stopping criterion based on loss improvement.
+             beta1: float
+                Exponential decay rate for the first moment estimates.
+            beta2: float
+                Exponential decay rate for the second moment estimates.
+            epsilon: float
+                Small constant for numerical stability.
+            verbose : bool
+                If True, print loss info during training.
+        """
+        self.model = model
+        self.init_params = init_params
+        self.loss_fn = loss_fn
+        self.lr = lr
+        self.max_iter = max_iter
+        self.batch_size = batch_size
+        self.tol = tol
+        self.verbose = verbose
+        self.h = h
+        self.beta1 = beta1
+        self.beta2 = beta2
+        self.epsilon = epsilon
         
+    def numerical_grad(self, params, x, y):
+        """
+        Compute the gradient of the loss with respect to parameters numerically
+        using central differences.
+
+        Parameters:
+            params : np.ndarray
+                Current parameters.
+            x : np.ndarray
+                Input data for the current batch.
+            y : np.ndarray
+                Observed targets for the current batch.
+            loss_fn : callable
+                Function that computes the loss given (predictions, y).
+
+        Returns:
+            grad : np.ndarray
+                Approximated gradient vector.
+        """
+        
+        grad = np.zeros_like(params)
+        loss = self.loss_fn(self.model(params,x),y)
+        
+        for i in range(len(params)):
+            params_perturbed = params.copy()
+            params_perturbed[i] += self.h
+            loss_perturbed = self.loss_fn(self.model(params_perturbed,x),y)
+            grad[i] = (loss_perturbed - loss)/ self.h
+        
+        return grad
+    
+    def optimize(self, x, y, x_plot=None, visualize=False):
+        
+        
+        # Set up visualization if desired
+        if visualize:
+            if x_plot is None:
+                # If no plotting grid is provided, use the x data for visualization.
+                x_plot = x
+            plt.ion()  # Turn on interactive mode
+            fig, ax = plt.subplots()
+        
+        n_samples = x.shape[0]
+        loss_history = []
+        params = self.init_params
+        
+        # Initialize first and second moment estimates
+        m = np.zeros_like(params)
+        v = np.zeros_like(params)
+        t = 0
+        
+        
+        for epoch in range(self.max_iter):
+            indices = np.arange(n_samples)
+            np.random.shuffle(indices)
+            x_shuffled = x[indices]
+            y_shuffled = y[indices]
+            
+            epoch_loss = 0
+            
+            for i in range(0, n_samples, self.batch_size):
+                x_batch =x_shuffled[i:i + self.batch_size]
+                y_batch = y_shuffled[i:i + self.batch_size]
+                
+                #Compute predictions and loss for current batch 
+                preds = self.model(params,x_batch)
+                loss = self.loss_fn(preds,y_batch)
+                epoch_loss += loss
+                
+                #Compute gradient
+                grad = self.numerical_grad(params,x_batch,y_batch)
+                
+                t += 1
+                # Update biased first moment estimate
+                m = self.beta1 * m + (1 - self.beta1) * grad
+                # Update biased second raw moment estimate
+                v = self.beta2 * v + (1 - self.beta2) * (grad ** 2)
+                # Compute bias-corrected first moment estimate
+                m_hat = m / (1 - self.beta1 ** t)
+                # Compute bias-corrected second raw moment estimate
+                v_hat = v / (1 - self.beta2 ** t )
+                
+                # Update parameters
+                params = params - self.lr * m_hat / (np.sqrt(v_hat) + self.epsilon)
+            
+            #Avarage loss over batch in this epoch 
+            epoch_loss /= (n_samples/ self.batch_size)
+            loss_history.append(epoch_loss)
+            
+            if self.verbose:
+                print(f"Epoch {epoch+1}/{self.max_iter} - Loss: {epoch_loss:.6f}")
+                
+            # Visualization update (if requested)
+            if x_plot is not None:
+                ax.clear()
+                ax.scatter(x, y, label="Data", color="blue")
+                # Compute model predictions on the plotting grid
+                y_est = self.model(params, x_plot)
+                ax.plot(x_plot, y_est, label="Model Estimate", color="red")
+                ax.set_title(f"Epoch {epoch+1} - Loss: {epoch_loss:.6f}")
+                ax.legend()
+                plt.pause(0.1)
+            
+              # Early stopping based on loss improvement
+            if epoch > 0 and abs(loss_history[-2] - epoch_loss) < self.tol:
+                print(f"Converged at epoch {epoch+1}")
+                break
+        
+        if x_plot is not None:
+            plt.ioff()
+            plt.show()
+        
+        return params, loss_history     
