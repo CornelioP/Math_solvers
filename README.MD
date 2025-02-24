@@ -25,19 +25,20 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 
 ## Classes Overview
 ### LM (Levenberg-Marquardt)
-- **Constructor Parameters**:
+**Constructor Parameters**:
 
 - model: The model function taking (params, x) as inputs.
 - init_guess: Initial guess for the parameters.
 - max_iter: Maximum number of iterations (default: 100).
 - tol: Tolerance for convergence (default: 1e-6).
 - lamda_init: Initial damping factor (default: 1e-3).
+
 **Key Methods**:
 
 -numerical_jacobian: Computes the Jacobian matrix of residuals with respect to parameters using finite differences.
 -optimize: Runs the LM algorithm. Supports optional real-time visualization.
 ### SGD (Stochastic Gradient Descent)
-- **Constructor Parameters**:
+**Constructor Parameters**:
 
 - model: Model function.
 - init_params: Initial parameter guess.
@@ -48,6 +49,7 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 - tol: Tolerance for convergence (default: 1e-6).
 - h: Step size for numerical gradient estimation (default: 1e-7).
 - verbose: If True, prints progress information (default: True).
+
 **Key Methods**:
 
 - numerical_grad: Approximates the gradient of the loss using central differences.
@@ -59,6 +61,7 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 - beta1: Exponential decay rate for the first moment estimates (default: 0.9).
 - beta2: Exponential decay rate for the second moment estimates (default: 0.999).
 - epsilon: Small constant for numerical stability (default: 1e-8).
+
 **Key Methods**:
 
 - numerical_grad: Similar to SGD's numerical gradient computation.
