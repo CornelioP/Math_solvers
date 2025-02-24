@@ -75,16 +75,19 @@ Real Parameters: [5.0, 1.0, 1.0]
 
 ![Screenshot](images/LM.png)
 
+
 Estimated Parameters = [4.98797197 0.99907269 0.9520247]
 
 ### SGD 
 
 ![Screenshot](images/SGD.png)
 
+
 Estimated Parameters: [4.96197119 1.00108708 1.01482071]
 
 ### ADAM 
 
 ![Screenshot](images/ADAM.png)
+
 
 Estimated Parameters: [4.8944402  1.00099646 0.99991453]
