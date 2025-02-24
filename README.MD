@@ -71,12 +71,12 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 
 ### LLM 
 
-![Screenshot][/images/LM.png]
+![Screenshot][images/LM.png]
 
 ### SGD 
 
-![Screenshot][/images/SGD.png]
+![Screenshot][images/SGD.png]
 
 ### ADAM 
 
-![Screenshot][/images/ADAM.png]
+![Screenshot][images/ADAM.png]
