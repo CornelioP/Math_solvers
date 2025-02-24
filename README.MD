@@ -66,3 +66,17 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 
 - numerical_grad: Similar to SGD's numerical gradient computation.
 - optimize: Runs the ADAM algorithm with real-time visualization optional.
+
+## Example 
+
+### LLM 
+
+![Screenshot][/home/gpiatelli/LM.png]
+
+### SGD 
+
+![Screenshot][/home/gpiatelli/Pictures/Screenshots/Screenshot from 2025-02-24 23-24-57.png]
+
+### ADAM 
+
+![Screenshot][/home/gpiatelli/Pictures/Screenshots/Screenshot from 2025-02-24 23-30-23.png]
