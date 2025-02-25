@@ -67,27 +67,52 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 - numerical_grad: Similar to SGD's numerical gradient computation.
 - optimize: Runs the ADAM algorithm with real-time visualization optional.
 
-## Example 
 
-Real Parameters: [5.0, 1.0, 1.0]
+## Global minima example
+As you can see from the following evaluation in case of multiple local minima, gtradient based method struggles to find the global minima of the function while on the other side PSO is able to find it.
+
+Global minima: 'f([3.1818181818181817, 3.131313131313131])=-1.8082706615747688'
+
+### PSO
+
+![Alt text](PSO.gif)
+
+PSO found best solution at 'f([3.18496451 3.1297101 ])=-1.8083517596981689'
+
+### SGD
+
+![Alt text](SGD.gif)
+
+SGD found best solution at 'f([3.18515538 1.73879282])=-0.9061231215300085'
+
+
+### ADAM
+
+![Alt text](ADAM.gif)
+
+ADAM found best solution at 'f([3.20975875 1.75743348])=-0.9000595521935848'
+
+## Curve fitting example  
+
+Real Parameters: '[5.0, 1.0, 1.0]'
 
 ### LLM 
 
 ![Screenshot](images/LM.png)
 
 
-Estimated Parameters = [4.98797197 0.99907269 0.9520247]
+Estimated Parameters = '[4.98797197 0.99907269 0.9520247]'
 
 ### SGD 
 
 ![Screenshot](images/SGD.png?)
 
 
-Estimated Parameters: [4.96197119 1.00108708 1.01482071]
+Estimated Parameters: '[4.96197119 1.00108708 1.01482071]'
 
 ### ADAM 
 
 ![Screenshot](images/ADAM.png?)
 
 
-Estimated Parameters: [4.8944402  1.00099646 0.99991453]
+Estimated Parameters: '[4.8944402  1.00099646 0.99991453]'
