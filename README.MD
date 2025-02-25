@@ -5,7 +5,7 @@ This repository contains implementations of optimization algorithms widely used 
 - **Levenberg–Marquardt (LM)**
 - **Stochastic Gradient Descent (SGD)**
 - **ADAM (Adaptive Moment Estimation)**
-- **PSO** (Particle Swarm Optimization)
+- **PSO (Particle Swarm Optimization)**
 
 Each algorithm is implemented as a Python class with methods for optimizing model parameters, including optional real-time visualization of the fitting process.
 
@@ -29,7 +29,7 @@ Each algorithm is implemented as a Python class with methods for optimizing mode
 
 ## Global Minima Example
 
-As you can see from the following evaluation—in the case of multiple local minima—the gradient‐based method struggles to find the global minimum of the function, while PSO is able to find it.
+As you can see from the following evaluation—in the case of multiple local minima—the gradient‐based method struggles to find the global minimum of the function, while **PSO is able to correctly find the global minima**.
 
 ```math
 f(x, y) = (x - 3.14)^2 + (y - 2.72)^2 + \sin\bigl(3x + 1.41\bigr) + \sin\bigl(4y - 1.73\bigr)
@@ -68,12 +68,14 @@ f\!\left(\left[3.20975875,\; 1.75743348\right]\right) = -0.9000595521935848
 ---
 
 ## Curve Fitting Example
-Model to fit:
+We want to find the parameter of the following model given a set of syntethic data:
+
 ```math
-f(a,b,c,x) = a * \sin\bigl(bx\bigr) + c
+f(a,b,c,x) = a * \sin(bx) + c
 ```
 
-Real Parameters:  
+- **Real Parameters**:  
+
 ```math
 \left[5.0,\; 1.0,\; 1.0\right]
 ```
