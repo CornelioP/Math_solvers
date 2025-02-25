@@ -75,20 +75,20 @@ Global minima: 'f([3.1818181818181817, 3.131313131313131])=-1.8082706615747688'
 
 ### PSO
 
-![Alt text](PSO.gif)
+![til](images/PSO.gif)
 
 PSO found best solution at 'f([3.18496451 3.1297101 ])=-1.8083517596981689'
 
 ### SGD
 
-![Alt text](SGD.gif)
+![til](images/SGD.gif)
 
 SGD found best solution at 'f([3.18515538 1.73879282])=-0.9061231215300085'
 
 
 ### ADAM
 
-![Alt text](ADAM.gif)
+![til](images/ADAM.gif)
 
 ADAM found best solution at 'f([3.20975875 1.75743348])=-0.9000595521935848'
 
