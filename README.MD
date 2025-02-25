@@ -35,6 +35,8 @@ As you can see from the following evaluation—in the case of multiple local min
 f(x, y) = (x - 3.14)^2 + (y - 2.72)^2 + \sin\bigl(3x + 1.41\bigr) + \sin\bigl(4y - 1.73\bigr)
 ```
 
+![Function](images/3D_plot.png)
+
 Global minimum:
 ```math
 f\!\left(\left[3.1818181818181817,\; 3.131313131313131\right]\right) = -1.8082706615747688
