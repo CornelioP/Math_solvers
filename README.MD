@@ -36,7 +36,7 @@ f(x, y) = (x - 3.14)^2 + (y - 2.72)^2 + \sin\bigl(3x + 1.41\bigr) + \sin\bigl(4y
 ```
 
 <p align="center">
-  <img src="images/3D_plot.png" alt="Centered Image" width="900">
+  <img src="images/3D_plot.png" alt="Centered Image" width="700">
 </p>
 
 Global minimum:
@@ -87,7 +87,7 @@ f(a,b,c,x) = a * \sin(bx) + c
 ### LLM 
 
 <p align="center">
-  <img src="images/LM.png" alt="Centered Image" width="900">
+  <img src="images/LM.png" alt="Centered Image" width="700">
 </p>
 
 Estimated Parameters:  
@@ -98,7 +98,7 @@ Estimated Parameters:
 ### SGD 
 
 <p align="center">
-  <img src="images/SGD.png" alt="Centered Image" width="900">
+  <img src="images/SGD.png" alt="Centered Image" width="700">
 </p>
 
 Estimated Parameters:  
@@ -109,7 +109,7 @@ Estimated Parameters:
 ### ADAM 
 
 <p align="center">
-  <img src="images/ADAM.png" alt="Centered Image" width="900">
+  <img src="images/ADAM.png" alt="Centered Image" width="700">
 </p>
 
 Estimated Parameters:  
