@@ -70,13 +70,13 @@ f\!\left(\left[3.20975875,\; 1.75743348\right]\right) = -0.9000595521935848
 ## Curve Fitting Example
 Model to fit:
 ```math
-a * b \sin{b*x} + c
+f(a,b,c,x) = a * \sin\bigl(bx\bigr) + c
 ```
 
 Real Parameters:  
 ```math
 \left[5.0,\; 1.0,\; 1.0\right]
-\]
+```
 
 ### LLM 
 
